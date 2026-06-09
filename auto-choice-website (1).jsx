@@ -1,0 +1,249 @@
+import React, { useState } from 'react';
+import { MapPin, Phone, Clock, Star, ChevronRight, Menu, X } from 'lucide-react';
+
+export default function AutoChoice() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const reviews = [
+    {
+      name: "Carlos M.",
+      rating: 5,
+      text: "Excelente experiencia de compra. El vehículo superó mis expectativas, en perfecto estado y el servicio fue excepcional."
+    },
+    {
+      name: "María L.",
+      rating: 5,
+      text: "El mejor dealer de RD. Con la mejor garantía, trato y servicio. Gracias mis amigos de Auto Choice."
+    },
+    {
+      name: "Juan P.",
+      rating: 5,
+      text: "Muy profesionales y confiables. Recomiendo 100% este concesionario a todos mis conocidos."
+    }
+  ];
+
+  const services = [
+    { icon: "🚗", title: "Venta de Vehículos", desc: "Amplio inventario de autos de calidad" },
+    { icon: "🔧", title: "Mantenimiento", desc: "Servicio técnico especializado" },
+    { icon: "📋", title: "Financiamiento", desc: "Opciones flexibles de pago" },
+    { icon: "🛡️", title: "Garantía", desc: "Cobertura completa en nuestros vehículos" }
+  ];
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex-shrink-0">
+              <h1 className="text-2xl font-bold text-blue-600">Auto Choice</h1>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden md:flex space-x-8">
+              <a href="#inicio" className="text-gray-700 hover:text-blue-600 transition">Inicio</a>
+              <a href="#servicios" className="text-gray-700 hover:text-blue-600 transition">Servicios</a>
+              <a href="#opiniones" className="text-gray-700 hover:text-blue-600 transition">Opiniones</a>
+              <a href="#contacto" className="text-gray-700 hover:text-blue-600 transition">Contacto</a>
+            </nav>
+
+            {/* Mobile menu button */}
+            <button 
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+
+          {/* Mobile Navigation */}
+          {mobileMenuOpen && (
+            <nav className="md:hidden pb-4 space-y-3">
+              <a href="#inicio" className="block text-gray-700 hover:text-blue-600">Inicio</a>
+              <a href="#servicios" className="block text-gray-700 hover:text-blue-600">Servicios</a>
+              <a href="#opiniones" className="block text-gray-700 hover:text-blue-600">Opiniones</a>
+              <a href="#contacto" className="block text-gray-700 hover:text-blue-600">Contacto</a>
+            </nav>
+          )}
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section id="inicio" className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Bienvenido a Auto Choice Dominicana</h2>
+            <p className="text-xl text-blue-100 mb-8">Tu concesionario de confianza en Santo Domingo</p>
+            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition inline-flex items-center gap-2">
+              Contactarnos ahora <ChevronRight size={20} />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Info */}
+      <section className="bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="flex items-start gap-4">
+              <div className="bg-blue-600 text-white p-3 rounded-lg">
+                <Star size={24} />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">4.7/5 Estrellas</h3>
+                <p className="text-gray-600">88 opiniones verificadas</p>
+              </div>
+            </div>
+            
+            <div className="flex items-start gap-4">
+              <div className="bg-blue-600 text-white p-3 rounded-lg">
+                <Clock size={24} />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">Horario</h3>
+                <p className="text-gray-600">Abierto hasta las 6:00 p.m.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <div className="bg-blue-600 text-white p-3 rounded-lg">
+                <Phone size={24} />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg">(829) 687-5472</h3>
+                <p className="text-gray-600">Llámanos para más información</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="servicios" className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Nuestros Servicios</h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {services.map((service, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-xl border border-gray-200 text-center hover:border-blue-300 hover:shadow-lg transition">
+                <div className="text-4xl mb-4">{service.icon}</div>
+                <h3 className="font-semibold text-lg mb-2">{service.title}</h3>
+                <p className="text-gray-600 text-sm">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Reviews Section */}
+      <section id="opiniones" className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">Lo que dicen nuestros clientes</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {reviews.map((review, idx) => (
+              <div key={idx} className="bg-white p-6 rounded-xl shadow-sm">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star key={i} size={18} className="fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-gray-700 mb-4 leading-relaxed">{review.text}</p>
+                <p className="font-semibold text-gray-900">{review.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contacto" className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-3xl font-bold mb-8">Ubicación y Contacto</h2>
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <MapPin className="text-blue-600 flex-shrink-0" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">Dirección</h3>
+                    <p className="text-gray-600">Av. República de Colombia<br/>Santo Domingo, República Dominicana</p>
+                  </div>
+                </div>
+                
+                <div className="flex gap-4">
+                  <Phone className="text-blue-600 flex-shrink-0" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">Teléfono</h3>
+                    <a href="tel:+18296875472" className="text-blue-600 hover:underline">(829) 687-5472</a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <Clock className="text-blue-600 flex-shrink-0" size={24} />
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">Horarios</h3>
+                    <p className="text-gray-600">Lunes a Viernes: 8:00 a.m. - 6:00 p.m.<br/>Sábado: 9:00 a.m. - 5:00 p.m.</p>
+                  </div>
+                </div>
+              </div>
+
+              <button className="mt-8 w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                Reservar Cita
+              </button>
+            </div>
+
+            <div className="bg-gray-100 rounded-xl overflow-hidden h-96">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3784.1234567890!2d-69.9123!3d18.4861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eaf8a47d52cc051%3A0x53a78421b5ffe0af!2sAuto%20Choice%20Dominicana!5e0!3m2!1ses!2sdo!4v1234567890"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+              <h3 className="text-white font-bold mb-4">Auto Choice</h3>
+              <p className="text-sm">Tu concesionario de confianza en Santo Domingo con más de 88 clientes satisfechos.</p>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Empresa</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-white transition">Sobre nosotros</a></li>
+                <li><a href="#" className="hover:text-white transition">Servicios</a></li>
+                <li><a href="#" className="hover:text-white transition">Vehículos</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Contacto</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="tel:+18296875472" className="hover:text-white transition">(829) 687-5472</a></li>
+                <li>Av. República de Colombia</li>
+                <li>Santo Domingo, RD</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-white font-semibold mb-4">Horarios</h4>
+              <ul className="space-y-2 text-sm">
+                <li>L-V: 8:00 a.m. - 6:00 p.m.</li>
+                <li>Sábado: 9:00 a.m. - 5:00 p.m.</li>
+                <li>Domingo: Cerrado</li>
+              </ul>
+            </div>
+          </div>
+          <div className="border-t border-gray-800 pt-8 text-center text-sm">
+            <p>&copy; 2024 Auto Choice Dominicana. Todos los derechos reservados.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
